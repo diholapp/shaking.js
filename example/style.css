@@ -1,0 +1,83 @@
+body {
+	font-family: "Quicksand", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif !important;
+}
+
+.view {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 240px;
+	padding-top: 259px;
+	justify-content: center;
+    background-color: white;
+}
+
+.form {
+	padding: 10px 40px 0;
+	width: 400px;
+	height: 440px;
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 0 15px 35px 0 rgba(60, 66, 87, .1), 0 5px 15px 0 rgba(0, 0, 0, .07)
+}
+
+.button {
+	margin-top: 10px;
+	width: 100%;
+	border-radius: 6px;
+	font-size: 20px;
+	padding: 10px;
+	color: #fff;
+	cursor: pointer;
+	border: 1px solid #44c792;
+	background-color: #44c792
+}
+
+.button:hover {
+	color: #fff;
+	cursor: pointer;
+	background-color: #41d89b;
+	-webkit-transform: translateY(-1px);
+	transform: translateY(-1px);
+	box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08)
+}
+
+.footer-container {
+	padding-top: 30px;
+	display: flex;
+	justify-content: center
+}
+
+.center-hor {
+	display: flex;
+	justify-content: center
+}
+
+.logo-container {
+	padding: 15px 0 20px
+}
+
+.logo {
+	width: 60%;
+	height: 60%
+}
+
+input {
+	width: 100%;
+	height: 46px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 1px solid #d4d5d6;
+	border-radius: 6px;
+	font-size: 1em
+}
+
+p {
+	align-self: left;
+	margin: 6px
+}
+
+.FormInputElement {
+	margin-bottom: 20px
+}
+
+

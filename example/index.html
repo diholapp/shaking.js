@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+<title>DiHola Test</title>
+
+<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+        <link rel="stylesheet" href="style.css">
+        
+        <div class="view">
+            <div>
+                <div class="form">
+                    <div class="center-hor logo-container"><img src="text-logo.png" class="logo"></div>
+                    <div class="FormInputElement">
+                        <p>My ID</p>
+                        <input id="id" type="text" readonly>
+                    </div>
+                    <div class="FormInputElement">
+                        <p>User(s) found</p>
+                        <input id="result" type="text" readonly>
+                    </div>
+                    <button class="button" id="myBtn" href="#">Start</button>
+                    
+                    <div style="margin-top: 30px;text-align: center;display: none;" id="info">
+                        <span>Shake the device</span>
+                    </div>
+
+                    <div style="margin-top: 30px;text-align: center;display: none;" id="loading">
+                        <span style="color: #44c792;">Loading...</span>
+                    </div>
+
+                    <div style="margin-top: 30px;text-align: center;display: none;" id="error">
+                        <span style="color: red;">Error</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="shaking.min.js"></script>
+        
+        <script>
+
+            (function() {
+
+                var myID = Math.random().toString(36).substring(2);
+
+                $("#id").val(myID);
+
+                var stopped = true;
+
+                var shakingAPI = new ShakingAPI();
+                
+                shakingAPI.configure({
+
+                    API_KEY: "",
+                    user: myID,
+                
+                    onShaking: () => {
+                        $("#info").hide();
+                        $("#loading").show()
+                    },
+                
+                    onSuccess: (result) => {
+
+                        if(stopped) return;
+
+                        $("#loading").hide();
+                        $("#info").show();
+                        $("#result").val(result);
+                    },
+                
+                    onError: (error) => {
+                        $("#loading").hide();
+                        $("#info").hide();
+
+                        if(stopped) return;
+
+                        var text = "Couldn't connect with the server. Try again later.";
+
+                        switch(error){
+
+                            case ShakingCodes.SENSOR_ERROR:
+                                text = "This device doesn't support motion tracking."
+                                break;
+
+                            case ShakingCodes.LOCATION_PERMISSION_ERROR:
+                                text = "Please enable location permission and try again."
+                                break;
+
+                            case ShakingCodes.LOCATION_DISABLED:
+                                text = "Please enable location and try again."
+                                break;
+
+                            case ShakingCodes.AUTHENTICATION_ERROR:
+                                text = "Authentication error."
+                                break;
+                        }
+
+                        $("#error span").text(text);
+                        $("#error").show();
+                    }
+                
+                });
+
+                $("#myBtn").click(function(){
+                    
+                    stopped = !stopped;
+
+                    if(stopped) {
+
+                        shakingAPI.stop();
+                        $("#myBtn").text("Start");
+                        $("#info").hide();
+                        $("#loading").hide();
+                        $("#error").hide();
+                    }
+                    else {
+                        $("#myBtn").text("Stop");
+                        $("#info").show();
+                        shakingAPI.start();
+                    }
+                    
+                });
+
+            })();
+            
+        </script>
+
+</body>
+</html>
