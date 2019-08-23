@@ -16,7 +16,7 @@ Usage
 -------
 
 ```html
-<script src="https://api.diholapplication.com/libs/shaking/1.4.0/shaking.min.js"></script>
+<script src="https://api.diholapplication.com/libs/shaking/1.5.0/shaking.min.js"></script>
 ```
 
 ```javascript
