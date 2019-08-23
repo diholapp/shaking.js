@@ -51,6 +51,11 @@ ShakingAPI.prototype = {
     accelerometer: null,
 
     /*
+     * Connect only with a set of users.
+     */
+    connectOnlyWith = [],
+
+    /*
      * API status.
      */
     stopped: true,
@@ -121,6 +126,7 @@ ShakingAPI.prototype = {
             timingFilter,
             distanceFilter,
             keepSearching,
+            connectOnlyWith,
             vibrate,
             onShaking,
             onSuccess,
@@ -134,6 +140,7 @@ ShakingAPI.prototype = {
         if (timingFilter !== undefined) this.setTimingFilter(timingFilter);
         if (distanceFilter !== undefined) this.setDistanceFilter(distanceFilter);
         if (keepSearching !== undefined) this.setKeepSearching(keepSearching);
+        if (connectOnlyWith !== undefined) this.setConnectOnlyWith(connectOnlyWith);
         if (vibrate !== undefined) this.vibrate = vibrate;
 
         if (lat !== undefined && lng !== undefined) {
@@ -171,6 +178,10 @@ ShakingAPI.prototype = {
 
     setKeepSearching: function(keepSearching) {
         this.keepSearching = keepSearching;
+    },
+
+    setConnectOnlyWith: function(connectOnlyWith) {
+        this.connectOnlyWith = connectOnlyWith;
     },
 
     _subscribe: function() {
@@ -232,7 +243,8 @@ ShakingAPI.prototype = {
                 sensibility: this.sensibility,
                 distanceFilter: this.distanceFilter,
                 timingFilter: this.timingFilter,
-                keepSearching: this.keepSearching
+                keepSearching: this.keepSearching,
+                connectOnlyWith: this.connectOnlyWith
             })
         }
 

@@ -42,7 +42,7 @@
             </div>
         </div>
 
-        <script src="shaking.min.js"></script>
+        <script src="https://api.diholapplication.com/libs/shaking/1.5.0/shaking.min.js"></script>
         
         <script>
 
@@ -58,7 +58,7 @@
                 
                 shakingAPI.configure({
 
-                    API_KEY: "",
+                    API_KEY: "d88b8ce3c100f2e97677db83223a3c4b",
                     user: myID,
                 
                     onShaking: () => {
@@ -95,10 +95,6 @@
 
                             case ShakingCodes.LOCATION_DISABLED:
                                 text = "Please enable location and try again."
-                                break;
-
-                            case ShakingCodes.AUTHENTICATION_ERROR:
-                                text = "Authentication error."
                                 break;
                         }
 
